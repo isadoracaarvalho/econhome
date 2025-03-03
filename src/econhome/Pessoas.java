@@ -3,7 +3,6 @@ package econhome;
 import java.util.ArrayList;
 import java.util.List;
 
-// essa classe vai gerar pessoas
 public class Pessoas {
 
 	private static Integer cont = 1;
@@ -19,7 +18,6 @@ public class Pessoas {
 		this.transacoes = new ArrayList<>();
 	}
 
-	// esse metodo adiciona em um arraylist as transações realizadas pela pessoa
 	public void addTransacao(Transacao transacao) {
 		this.transacoes.add(transacao);
 	}
@@ -39,11 +37,6 @@ public class Pessoas {
 	public List<Transacao> getTransacoes() {
 		return this.transacoes;
 	}
-
-	/*
-	 * essa função possui um acumulador soma, para calcular o montante de todas as
-	 * transações realizadas
-	 */
 
 	public Double exibeMontante() {
 		Double montante = 0.0;

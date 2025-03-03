@@ -11,7 +11,6 @@ public class Main {
 		List<Pessoas> pessoa = new ArrayList<>();
 		GerirTotais gerirtotais = new GerirTotais();
 
-		// ate que o usuario escolha sair do programa, o sistema ira funcionar
 		while (true) {
 			String[] opcoes = { "Cadastrar Pessoa", "Cadastrar Transação", "Consulta de Totais", "Deletar Pessoa",
 					"Sair" };
@@ -34,11 +33,6 @@ public class Main {
 			case 1:
 				String descricao = JOptionPane.showInputDialog("Descrição: ");
 
-				/*
-				 * aqui nós vamos selecionar a pessoa que esta realizando a transação, para isso
-				 * criamos uma lista que vai receber o nome des todas as pessoas cadastradas -
-				 * essas vão aparecer nas opções para o usuário selecionar
-				 */
 				Object[] nomePessoas = new Object[pessoa.size()];
 				for (int i = 0; i < pessoa.size(); i++) {
 					nomePessoas[i] = pessoa.get(i).getNome();
@@ -47,11 +41,6 @@ public class Main {
 				Object valorSelecionado = JOptionPane.showInputDialog(null, "Selecionar pessoa", "Nova transação",
 						JOptionPane.INFORMATION_MESSAGE, null, nomePessoas, nomePessoas[0]);
 
-				/*
-				 * aqui, vou buscar a pessoa que foi selecionada e armazenar seu nome e idade, a
-				 * idade é importante para filtrar qual o tipo de transação que a pessoa pode
-				 * fazer
-				 */
 				Pessoas pessoaSelecionada = null;
 				String nomeSelecionado = null;
 				Integer idadeSelecionada = 0;
@@ -63,12 +52,6 @@ public class Main {
 						idadeSelecionada = p.getIdade();
 					}
 				}
-
-				/*
-				 * nesse bloco de código, eu crio o seletor de qual o tipo de transação a ser
-				 * realizada e filtro para que pessoas com menos de 18 anos possam apenas
-				 * cadastrar uma "despesa"
-				 */
 
 				Object[] tipoTransacao = { "Despesa", "Receita" };
 
@@ -88,8 +71,6 @@ public class Main {
 
 				Double valor = Double.parseDouble(JOptionPane.showInputDialog("Valor: "));
 
-				// aqui eu crio uma nova transação, adciono ela a pessoa selecionada, e
-				// contabilizo nos totais
 				Transacao transacao = new Transacao(descricao, valor, tipo);
 				pessoaSelecionada.addTransacao(transacao);
 				gerirtotais.contabilizaTransacoes(transacao);
@@ -100,11 +81,7 @@ public class Main {
 
 			// consulta de totais
 			case 2:
-				/*
-				 * aqui nós vamos percorrer todas as pessoas para listar suas informações e
-				 * transações, em seguida, apresentar o total de despesas, o total de receitas e
-				 * saldo líquido total
-				 */
+
 				for (Pessoas p : pessoa) {
 					JOptionPane.showMessageDialog(null, p.toString());
 				}
@@ -115,7 +92,7 @@ public class Main {
 
 			// deletar pessoas do sistemas
 			case 3:
-				// aqui, vou criar novavente, um seletor com todas as pessoas cadastradas
+
 				nomePessoas = new Object[pessoa.size()];
 				for (int i = 0; i < pessoa.size(); i++) {
 					nomePessoas[i] = pessoa.get(i).getNome();
@@ -124,8 +101,6 @@ public class Main {
 				valorSelecionado = JOptionPane.showInputDialog(null, "Selecionar pessoa", "Pessoa para ser deletada",
 						JOptionPane.INFORMATION_MESSAGE, null, nomePessoas, nomePessoas[0]);
 
-				// aqui, vou armazenar a pessoa selecionada que devera ser deletada
-
 				Pessoas pessoaDeletar = null;
 
 				for (Pessoas p : pessoa) {
@@ -133,9 +108,6 @@ public class Main {
 						pessoaDeletar = p;
 					}
 				}
-
-				// essa parte do código é responsável por remover a pessoa e as transações que
-				// ela realizou do sistema
 
 				for (Transacao t : pessoaDeletar.getTransacoes()) {
 					gerirtotais.removerTransacoes(t);

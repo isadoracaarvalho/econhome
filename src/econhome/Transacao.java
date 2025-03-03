@@ -1,6 +1,5 @@
 package econhome;
 
-// essa classe é responsável pelos métodos que irão realizar as transações
 public class Transacao {
 
 	private static Integer cont = 1;
@@ -32,7 +31,6 @@ public class Transacao {
 		return tipo;
 	}
 
-	// esse método retorna qual foi o tipo de transação realizada
 	public String determinaTipo() {
 		if (tipo) {
 			return "Receita";
